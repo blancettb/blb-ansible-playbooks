@@ -1,0 +1,17 @@
+- hosts: all
+  gather_facts: no
+  vars:
+    - image_v1: '--filter ancestor=my_image:v1'
+    - image_v2: '--filter ancestor=my_image:v2'
+  tasks:
+    - name: Get images name
+      command: docker container ls -a {{ image_v1 }} {{ image_v2 }} --format "{{ '{{' }}.Names {{ '}}' }} {{ '{{' }}.Image {{ '}}' }}"
+      register: docker_images
+
+    - name: Restart images
+      docker_container:
+        name: "{{ item.split(' ')[0]}}"
+        image: "{{ item.split(' ')[1]}}"
+        state: started
+        restart: yes
+      loop: "{{ docker_images.stdout_lines}}"
