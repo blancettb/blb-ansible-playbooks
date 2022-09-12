@@ -1,0 +1,11 @@
+
+- hosts: all
+  gather_facts: no
+  tasks:
+    - name: Restart image
+      docker_container:
+        name: "{{ item.split(' ')[0]}}"
+        image: "{{ item.split(' ')[1]}}"
+        state: started
+        restart: yes
+      loop: "{{ docker_images.stdout_lines}}"
