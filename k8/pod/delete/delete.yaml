@@ -1,12 +1,12 @@
 - hosts: all
   gather_facts: no
   vars_files:
-    - variable_test.yml
+    - variables.yaml
   tasks:
   - name: delete a pod
     kubernetes.core.k8s:
       api_version: v1
       kind: Pod
-      namespace: "{{namespace }}"
+      namespace: "{{namespace}}"
       name: "{{name}}"
       state: absent
