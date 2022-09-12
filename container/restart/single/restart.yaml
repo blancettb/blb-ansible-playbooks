@@ -4,8 +4,7 @@
   tasks:
     - name: Restart image
       docker_container:
-        name: "{{ item.split(' ')[0]}}"
-        image: "{{ item.split(' ')[1]}}"
+        name: "{{name}}"
+        image: "{{image}}"
         state: started
         restart: yes
-      loop: "{{ docker_images.stdout_lines}}"
