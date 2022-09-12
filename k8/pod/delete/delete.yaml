@@ -1,7 +1,10 @@
-- name: delete a pod
-  kubernetes.core.k8s:
-    api_version: v1
-    kind: Pod
-    namespace: "{{namespace }}"
-    name: "{{name}}"
-    state: absent
+- hosts: all
+  gather_facts: no
+  tasks:
+  - name: delete a pod
+    kubernetes.core.k8s:
+      api_version: v1
+      kind: Pod
+      namespace: "{{namespace }}"
+      name: "{{name}}"
+      state: absent
