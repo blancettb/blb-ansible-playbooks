@@ -3,6 +3,12 @@
   vars_files:
     - variables.yaml
   tasks:
+  - name: install pre-requisites
+    pip:
+      name:
+        - openshift
+        - pyyaml
+        - kubernetes 
   - name: delete a pod
     k8s:
       api_version: v1
