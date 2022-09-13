@@ -8,4 +8,4 @@
      name: catalogue
      namespace: robot-shop
      replicas: 3
-     wait_timeout: 60
+
