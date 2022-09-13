@@ -8,6 +8,5 @@
      name: catalogue
      namespace: robot-shop
      replicas: 3
-     wait: 60
-     watch: 20
+     wait_timeout: 60
 
