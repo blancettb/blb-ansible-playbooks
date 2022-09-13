@@ -1,0 +1,8 @@
+- name: Scale deployment up, and extend timeout
+  k8s_scale:
+    api_version: v1
+    kind: Deployment
+    name: catalogue
+    namespace: robot-shop
+    replicas: 3
+    wait_timeout: 60
