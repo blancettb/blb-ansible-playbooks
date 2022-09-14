@@ -1,7 +1,7 @@
 - hosts: all
   module_defaults:
     group/k8s:
-      host: https://api.b-robotshop-on-ocp.cp.fyre.ibm.com:6443
+      host: "{{host_api_server}}"
       validate_certs: no
   tasks:
   - name: Obtain access token
