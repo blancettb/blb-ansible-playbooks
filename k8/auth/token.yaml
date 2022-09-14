@@ -4,7 +4,7 @@
   - name: Obtain access token
       k8s_auth:
         username:  kubeadmin
-        password: "{{password}}"
+          password: "{{password}}"
         register: k8s_auth_results
   - name: Create a namespace with token
       k8s:
