@@ -6,21 +6,15 @@
   tasks:
   - name: Obtain access token
     k8s_auth:
-      username:  kubeadmin
+      username: "{{username}}"
       password: "{{password}}"
     register: k8s_auth_results
-  - name: Create a namespace with token
-    k8s:
-      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
-      name: examplespace
-      kind: Namespace
-      state: present
   - name: Scale deployment up, and extend timeout
     k8s_scale:
      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
      api_version: v1
      kind: Deployment
-     name: catalogue
-     namespace: robot-shop
-     replicas: 3
+     name: "{{deployment_name}}"
+     namespace: "{{namespace}}"
+     replicas: "{{replicas}}"
      wait_timeout: 60
