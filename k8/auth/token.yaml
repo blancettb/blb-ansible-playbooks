@@ -1,5 +1,8 @@
 - hosts: all
-  gather_facts: no
+  module_defaults:
+    group/k8s:
+      host: https://api.b-robotshop-on-ocp.cp.fyre.ibm.com:6443
+      validate_certs: no
   tasks:
   - name: Obtain access token
     k8s_auth:
