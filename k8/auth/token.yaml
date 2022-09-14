@@ -5,10 +5,10 @@
     k8s_auth:
     username:  kubeadmin
     password: "{{password}}"
-   register: k8s_auth_results
+    register: k8s_auth_results
   - name: Create a namespace with token
-   k8s:
-   api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
-   name: examplespace
-   kind: Namespace
-   state: present
+    k8s:
+    api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+    name: examplespace
+    kind: Namespace
+    state: present
