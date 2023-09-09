@@ -5,7 +5,7 @@
       validate_certs: no
   tasks:
   - name: Obtain access token
-    kubernetes.core.k8s_auth:
+    k8s_auth:
       username: "{{username}}"
       password: "{{password}}"
     register: k8s_auth_results
