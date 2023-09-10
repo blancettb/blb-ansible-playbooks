@@ -1,20 +1,20 @@
 - hosts: all
   module_defaults:
     group/k8s:
-      host: "{{host_api_server}}"
+      host: "{{ host_api_server }}"
       validate_certs: no
   tasks:
   - name: Obtain access token
     kubernetes.core.k8s_auth:
-      username: "{{username}}"
-      password: "{{password}}"
+      username: "{{ username }}"
+      password: "{{ password }}"
     register: k8s_auth_results
   - name: Scale deployment up, and extend timeout
     k8s_scale:
      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
      api_version: v1
      kind: Deployment
-     name: "{{deployment_name}}"
-     namespace: "{{namespace}}"
-     replicas: "{{replicas}}"
+     name: "{{ deployment_name} }"
+     namespace: "{{ namespace }}"
+     replicas: "{{ replicas }}"
      wait_timeout: 60
