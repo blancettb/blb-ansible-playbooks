@@ -8,11 +8,11 @@
       password: "{{ password }}"
     register: k8s_auth_results
   - name: Scale deployment up, and extend timeout
-    k8s_scale:
+    kubernetes.core.k8s_scale:
      host: "{{ host_api_server }}"
      validate_certs: no
      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
-     api_version: v1
+     api_version: batch/v1
      kind: Deployment
      name: "{{ deployment_name }}"
      namespace: "{{ namespace }}"
