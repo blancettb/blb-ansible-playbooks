@@ -9,10 +9,12 @@
       validate_certs: no
       username: "{{ username }}"
       password: "{{ password }}"
+      host: "{{ host_api_server }}"
     register: k8s_auth_results
   - name: Scale deployment up, and extend timeout
     kubernetes.core.k8s_scale:
      validate_certs: no
+     host: "{{ host_api_server }}"
      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
      api_version: v1
      kind: Deployment
