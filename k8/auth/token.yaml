@@ -9,7 +9,6 @@
     register: k8s_auth_results
   - name: Scale deployment up, and extend timeout
     kubernetes.core.k8s_scale:
-     k8sdynamicclient: none
      host: "{{ host_api_server }}"
      validate_certs: no
      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
