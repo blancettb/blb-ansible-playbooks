@@ -9,6 +9,7 @@
       validate_certs: no
       username: "{{ username }}"
       password: "{{ password }}"
+      host: "{{ host_api_server }}"
     register: k8s_auth_results
   - name: Print the gateway for each host when defined
     ansible.builtin.debug:
@@ -16,6 +17,7 @@
   - name: Patch the deployment
     kubernetes.core.k8s_json_patch:
       validate_certs: no
+      host: "{{ host_api_server }}"
       wait_timeout: 20
       api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
       kind: Deployment
