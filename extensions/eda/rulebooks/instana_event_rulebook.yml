@@ -15,7 +15,7 @@
    - name: Test
      condition: event.payload.message == "Node failed"
      action:
-        run_playbook:
+        run_job_template:
           name: launch_controller_job.yml
    - name: Event 
      condition: event.payload.problem.problemText == "Erroneous call rate is too high"
