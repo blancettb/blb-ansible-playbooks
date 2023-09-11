@@ -1,4 +1,8 @@
 - hosts: all
+  module_defaults:
+    group/k8s:
+      host: "{{host_api_server}}"
+      validate_certs: no
   tasks:
   - name: Obtain access token
     kubernetes.core.k8s_auth:
