@@ -16,9 +16,9 @@
      condition: event.payload.message == "Node failed"
      action:
         run_job_template:
-          name: launch_controller_job.yml
+          name: BLB-Scale-Robotshop-Node
    - name: Event 
      condition: event.payload.problem.problemText == "Erroneous call rate is too high"
      action:
         run_job_template:
-          name: BLB-Scale-Robotshop-Node 
+          name: BLB-Scale-Robotshop-Node
