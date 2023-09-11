@@ -6,7 +6,6 @@
   tasks:
   - name: Obtain access token
     kubernetes.core.k8s_auth:
-      host: "{{ host_api_server }}"
       validate_certs: no
       username: "{{ username }}"
       password: "{{ password }}"
