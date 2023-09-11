@@ -4,14 +4,17 @@
       host: "{{host_api_server}}"
       validate_certs: no
   tasks:
-   - name: Obtain access token
-     kubernetes.core.k8s_auth:
+  - name: Obtain access token
+    kubernetes.core.k8s_auth:
       validate_certs: no
       username: "{{ username }}"
       password: "{{ password }}"
-     register: k8s_auth_results
-   - name: Patch the deployment
-     k8s_json_patch:
+    register: k8s_auth_results
+  - name: Print the gateway for each host when defined
+    ansible.builtin.debug:
+      msg: Host api server {{host_api_server}}
+  - name: Patch the deployment
+    k8s_json_patch:
       validate_certs: no
       wait_timeout: 20
       api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
@@ -23,3 +26,4 @@
         - op: replace
           path: /spec/template/spec/containers/0/image
           value: /spec/template/spec/containers/1/image
+
