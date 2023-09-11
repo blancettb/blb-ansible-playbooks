@@ -1,6 +1,6 @@
 - hosts: all
   module_defaults:
-    group/k8s:
+    group/kubernetes.core.k8s:
       host: "{{ host_api_server }}"
       validate_certs: no
   tasks:
@@ -9,7 +9,6 @@
       validate_certs: no
       username: "{{ username }}"
       password: "{{ password }}"
-      host: "{{ host_api_server }}"
     register: k8s_auth_results
   - name: Print the gateway for each host when defined
     ansible.builtin.debug:
