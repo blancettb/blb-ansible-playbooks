@@ -14,7 +14,7 @@
     ansible.builtin.debug:
       msg: Host api server "{{ host_api_server }}"
   - name: Patch the deployment
-    k8s_json_patch:
+    kubernetes.core.k8s_json_patch:
       validate_certs: no
       wait_timeout: 20
       api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
