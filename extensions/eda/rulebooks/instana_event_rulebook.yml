@@ -17,8 +17,10 @@
      action:
         run_job_template:
           name: BLB-Scale-Robotshop-Node
+          organization: Default
    - name: Event 
      condition: event.payload.problem.problemText == "Erroneous call rate is too high"
      action:
         run_job_template:
           name: BLB-Scale-Robotshop-Node
+          organization: Default
