@@ -21,7 +21,7 @@
       namespace: "{{namespace}}"
       kind: Pod
       label_selectors:
-       - "{{pod-label-selector}}"
+       - "{{pod_label-_selector}}"
      register: pod_info
 
    - name: Display pod info
