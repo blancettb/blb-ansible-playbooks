@@ -1,0 +1,29 @@
+- hosts: all
+  module_defaults:
+    group/k8s:
+      host: "{{host_api_server}}"
+      validate_certs: no
+  tasks:
+   - name: Print the gateway for each host when defined
+     ansible.builtin.debug:
+       msg: Host api server {{host_api_server}}
+   - name: Obtain access token
+     k8s_auth:
+       host: "{{host_api_server}}"
+       validate_certs: no
+       username: "{{username}}"
+       password: "{{password}}"
+     register: k8s_auth_results
+   - name: show the status of the pods.
+     kubernetes.core.k8s_info:
+      api_key: "{{ k8s_auth_results.k8s_auth.api_key }}"
+      api_version: v1
+      namespace: "{{namespace}}"
+      kind: Pod
+      label_selectors:
+       - "{{pod_label_selector}}"
+     register: pod_info
+
+   - name: Display pod info
+     debug:
+      var: pod_info | json_query('resources[].status')
