@@ -1,0 +1,12 @@
+- name: Investigate individual processes for high CPU usage
+  hosts: 9.30.245.141
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: List all processes sorted by CPU usage
+      command: ps aux --sort=-%cpu
+      register: processes
+
+    - name: Display processes for review
+      debug:
+        var: processes.stdout_lines
